@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+           <link rel ="stylesheet" href ="https://bootswatch.com/5/flatly/bootstrap.min.css">
+        {% block stylesheets %}
+            {#{{ encore_entry_link_tags('app') }}#}
+        {% endblock %}
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
+    </head>
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Magasine Scolaire</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+         <li class="nav-item">
+          <a class="nav-link" href="{{path( 'blog' )}}">Articles
+          </a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{path( 'blog_create' )}}">Créer un Article</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{path( 'search_blog' )}}">Articles triés alphabétiquement</a>
+        </li>
+        
+        {% if not app.user %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{path( 'security_login' )}}">Connexion</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{path( 'security_logout' )}}">Déconnexion</a>
+        </li>
+        {% endif %}
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{path( 'security_registration' )}}">Inscription</a>
+        </li>
+
+      </ul>
+
+    
+
+
+      
+    </div>
+  </div>
+</nav>
+<div class="container">
+        {% block body %}{% endblock %}
+        </div>
+    </body>
+</html>

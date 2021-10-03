@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+<h1>Liste d'articles selon catégories !</h1>
+<section  class = "articles">
+
+{% for article in articles %}
+{% if article.category == "Aut ut ad sunt sit doloribus." %}
+    <article>
+        <h1>{{article.title}}</h1>
+        <div class ="metadata">Ecrit le {{article.createdAt | date('m/d/y') }} à l'heure {{article.createdAt | date('h:i') }}dans la catégorie {{article.category.title}}</div>
+        <div class="content">
+        <img src= "{{ article.image }}" alt ="">
+        {{ article.content | raw}}
+        <br><a href ="{{ path('autre_blog', {'id' : article.id}) }}"  class ="btn btn-primary">lire la suite</a>
+        <br><a href ="{{ path('delete_blog', {'id' : article.id}) }}"  class ="btn btn-primary">Supprimer</a>
+        <br><a href ="{{ path('blog_edit', {'id' : article.id}) }}"  class ="btn btn-primary">Modifier</a>
+
+
+    </article>
+{% endif %}
+{% endfor %}
+
+</section>
+{% endblock %}
